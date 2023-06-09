@@ -13,12 +13,10 @@ namespace ImixWebService.Repositorios
 {
     public class Repositorio : IRepositorio
     {
-        private cooitzacoreEntities db = new cooitzacoreEntities();
+        private cooitzacoretestEntities db = new cooitzacoretestEntities();
         public async Task<RepoResponse> Bitacora(Transaccion transaccion, int tipo, long? idTransaccionesImix, RespuestaApi respuestaApi)
         {
             RepoResponse respuesta = new RepoResponse();
-
-
             GuardarTransaccionResult guardadoExitoso;
 
             if (tipo == 1)
@@ -93,8 +91,6 @@ namespace ImixWebService.Repositorios
 
             return respuesta;
         }
-
-
         public async Task<GuardarTransaccionResult> GuardarTransaccion(TransaccionesImix transaccionesImix, int operacion)
         {
             GuardarTransaccionResult resultado = new GuardarTransaccionResult();

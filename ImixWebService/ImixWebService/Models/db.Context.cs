@@ -12,13 +12,11 @@ namespace ImixWebService.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
-    public partial class cooitzacoreEntities : DbContext
+    public partial class cooitzacoretestEntities : DbContext
     {
-        public cooitzacoreEntities()
-            : base("name=cooitzacoreEntities")
+        public cooitzacoretestEntities()
+            : base("name=cooitzacoretestEntities")
         {
         }
     
@@ -28,7 +26,6 @@ namespace ImixWebService.Models
         }
     
         public virtual DbSet<CatOpcionesAsambleas> CatOpcionesAsambleas { get; set; }
-        public virtual DbSet<TblAsambleas> TblAsambleas { get; set; }
         public virtual DbSet<TblAsistenciasAsambaleas> TblAsistenciasAsambaleas { get; set; }
         public virtual DbSet<TblSmsCore> TblSmsCore { get; set; }
         public virtual DbSet<CatBusquedas> CatBusquedas { get; set; }
@@ -71,7 +68,6 @@ namespace ImixWebService.Models
         public virtual DbSet<TblSistemasCorreosDestinatariosCorreos> TblSistemasCorreosDestinatariosCorreos { get; set; }
         public virtual DbSet<CAJAENTERA2022> CAJAENTERA2022 { get; set; }
         public virtual DbSet<CatAnios> CatAnios { get; set; }
-        public virtual DbSet<CatEstadosTokens1> CatEstadosTokens1 { get; set; }
         public virtual DbSet<CatMeses> CatMeses { get; set; }
         public virtual DbSet<CatNombres> CatNombres { get; set; }
         public virtual DbSet<CatParentescos> CatParentescos { get; set; }
@@ -79,7 +75,6 @@ namespace ImixWebService.Models
         public virtual DbSet<CatProveedoresPagos> CatProveedoresPagos { get; set; }
         public virtual DbSet<CatTiposDocumentos> CatTiposDocumentos { get; set; }
         public virtual DbSet<CatTiposKilometraje> CatTiposKilometraje { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tblAdminpantalla> tblAdminpantalla { get; set; }
         public virtual DbSet<TblBitacoraService> TblBitacoraService { get; set; }
         public virtual DbSet<TblConvivioImagenes> TblConvivioImagenes { get; set; }
@@ -98,7 +93,6 @@ namespace ImixWebService.Models
         public virtual DbSet<CatEstadosTiempo> CatEstadosTiempo { get; set; }
         public virtual DbSet<CatIconos> CatIconos { get; set; }
         public virtual DbSet<CatLugares> CatLugares { get; set; }
-        public virtual DbSet<CatLugaresEmisionIdentificaciones> CatLugaresEmisionIdentificaciones { get; set; }
         public virtual DbSet<CatOpciones> CatOpciones { get; set; }
         public virtual DbSet<CatPuestos> CatPuestos { get; set; }
         public virtual DbSet<CatPuntos> CatPuntos { get; set; }
@@ -116,7 +110,6 @@ namespace ImixWebService.Models
         public virtual DbSet<TblProveedores> TblProveedores { get; set; }
         public virtual DbSet<TblCarteraCredito1> TblCarteraCredito1 { get; set; }
         public virtual DbSet<TransaccionesImix> TransaccionesImix { get; set; }
-        public virtual DbSet<TblConsultasIPass> TblConsultasIPass { get; set; }
         public virtual DbSet<CatTipoInstituciones> CatTipoInstituciones { get; set; }
         public virtual DbSet<CatTipoTransacciones> CatTipoTransacciones { get; set; }
         public virtual DbSet<TblHistoricos> TblHistoricos { get; set; }
@@ -128,20 +121,14 @@ namespace ImixWebService.Models
         public virtual DbSet<CatTiposFiltrosEvaluaciones> CatTiposFiltrosEvaluaciones { get; set; }
         public virtual DbSet<CatTiposMedicion> CatTiposMedicion { get; set; }
         public virtual DbSet<CatTiposOperacion> CatTiposOperacion { get; set; }
-        public virtual DbSet<CatTiposTableros> CatTiposTableros { get; set; }
         public virtual DbSet<TblAsignaciones> TblAsignaciones { get; set; }
         public virtual DbSet<TblAsignacionesEjecutivosSucursales> TblAsignacionesEjecutivosSucursales { get; set; }
         public virtual DbSet<TblCierresProductos> TblCierresProductos { get; set; }
         public virtual DbSet<TblEmpleadosMetas> TblEmpleadosMetas { get; set; }
         public virtual DbSet<TblGruposAgencias> TblGruposAgencias { get; set; }
         public virtual DbSet<TblProductosCooitza> TblProductosCooitza { get; set; }
-        public virtual DbSet<TblPunteosProductosTableros> TblPunteosProductosTableros { get; set; }
         public virtual DbSet<TblRolesMetas> TblRolesMetas { get; set; }
         public virtual DbSet<TblSucrusalesProductosCooitza> TblSucrusalesProductosCooitza { get; set; }
-        public virtual DbSet<CustomersInformations> CustomersInformations { get; set; }
-        public virtual DbSet<TblAccountInformation> TblAccountInformation { get; set; }
-        public virtual DbSet<TblCardsInformations> TblCardsInformations { get; set; }
-        public virtual DbSet<TblCuentasAsociados> TblCuentasAsociados { get; set; }
         public virtual DbSet<TblMigracion> TblMigracion { get; set; }
         public virtual DbSet<CatDestinatariosCorreo> CatDestinatariosCorreo { get; set; }
         public virtual DbSet<CatDestinatariosSms> CatDestinatariosSms { get; set; }
@@ -213,128 +200,5 @@ namespace ImixWebService.Models
         public virtual DbSet<CatZuma> CatZuma { get; set; }
         public virtual DbSet<TblAfiliaciones> TblAfiliaciones { get; set; }
         public virtual DbSet<Caja2022> Caja2022 { get; set; }
-        public virtual DbSet<TblAsambleas1> TblAsambleas1 { get; set; }
-    
-        [DbFunction("cooitzacoreEntities", "obSubModulo")]
-        public virtual IQueryable<obSubModulo_Result> obSubModulo(Nullable<long> idUsuario)
-        {
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("idUsuario", idUsuario) :
-                new ObjectParameter("idUsuario", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<obSubModulo_Result>("[cooitzacoreEntities].[obSubModulo](@idUsuario)", idUsuarioParameter);
-        }
-    
-        public virtual ObjectResult<obtenerSubmodulo_Result> obtenerSubmodulo(Nullable<long> idUsuario)
-        {
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("idUsuario", idUsuario) :
-                new ObjectParameter("idUsuario", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<obtenerSubmodulo_Result>("obtenerSubmodulo", idUsuarioParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
     }
 }

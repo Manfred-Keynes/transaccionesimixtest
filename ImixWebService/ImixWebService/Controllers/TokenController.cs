@@ -20,7 +20,7 @@ namespace ImixWebService.Controllers
     [RoutePrefix("api/Token")]
     public class TokenController : ApiController
     {
-        private cooitzacoreEntities db = new cooitzacoreEntities();
+        private cooitzacoretestEntities db = new cooitzacoretestEntities();
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]

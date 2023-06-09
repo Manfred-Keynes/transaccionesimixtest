@@ -17,7 +17,7 @@ namespace ImixWebService.Controllers
     [RoutePrefix("api/ImixTransacciones")]
     public class ImixTransaccionesController : ApiController
     {
-        private cooitzacoreEntities db = new cooitzacoreEntities();
+        private cooitzacoretestEntities db = new cooitzacoretestEntities();
         private IRepositorio repositorio;
         public ImixTransaccionesController()
         {

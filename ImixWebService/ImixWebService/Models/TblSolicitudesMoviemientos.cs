@@ -22,7 +22,7 @@ namespace ImixWebService.Models
     
         public long idTblSolicitudesMoviemientos { get; set; }
         public Nullable<long> idTblSolicitudesCooitzas { get; set; }
-        public Nullable<long> idCatProveedorPrincipal { get; set; }
+        public Nullable<long> idCatProveedoresCooitzas { get; set; }
         public Nullable<long> idCatEstadoSolicitudes { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<System.DateTime> fechaFin { get; set; }
@@ -32,13 +32,11 @@ namespace ImixWebService.Models
         public Nullable<System.DateTime> fechaModificacion { get; set; }
         public Nullable<long> idCatEstados { get; set; }
         public string descripcion { get; set; }
-        public Nullable<long> idCatProveedorSegundo { get; set; }
     
         public virtual TblUsuarios TblUsuarios { get; set; }
         public virtual CatEstados CatEstados { get; set; }
         public virtual CatEstadoSolicitudes CatEstadoSolicitudes { get; set; }
-        public virtual CatProveedoresExternos CatProveedoresExternos { get; set; }
-        public virtual CatProveedoresExternos CatProveedoresExternos1 { get; set; }
+        public virtual CatProveedoresCooitzas CatProveedoresCooitzas { get; set; }
         public virtual TblSolicitudesCooitzas TblSolicitudesCooitzas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblSolicitudesMovimientosDetalle> TblSolicitudesMovimientosDetalle { get; set; }

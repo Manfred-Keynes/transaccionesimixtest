@@ -60,7 +60,6 @@ namespace ImixWebService.Models
             this.CatTiposProveedores = new HashSet<CatTiposProveedores>();
             this.CatTiposProveedores1 = new HashSet<CatTiposProveedores>();
             this.constanciasLaborales = new HashSet<constanciasLaborales>();
-            this.TblConsultasIPass = new HashSet<TblConsultasIPass>();
             this.TblAsignaciones = new HashSet<TblAsignaciones>();
             this.TblAsignacionesEjecutivosSucursales = new HashSet<TblAsignacionesEjecutivosSucursales>();
             this.tblbitacorapremora = new HashSet<tblbitacorapremora>();
@@ -96,8 +95,6 @@ namespace ImixWebService.Models
             this.tblpremora1 = new HashSet<tblpremora>();
             this.TblProductosCooitza = new HashSet<TblProductosCooitza>();
             this.TblProductosCooitza1 = new HashSet<TblProductosCooitza>();
-            this.TblPunteosProductosTableros = new HashSet<TblPunteosProductosTableros>();
-            this.TblPunteosProductosTableros1 = new HashSet<TblPunteosProductosTableros>();
             this.TblSistemasCorreosDestinatariosCorreos = new HashSet<TblSistemasCorreosDestinatariosCorreos>();
             this.TblSistemasCorreosDestinatariosCorreos1 = new HashSet<TblSistemasCorreosDestinatariosCorreos>();
             this.TblSolicitudes = new HashSet<TblSolicitudes>();
@@ -222,8 +219,6 @@ namespace ImixWebService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<constanciasLaborales> constanciasLaborales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblConsultasIPass> TblConsultasIPass { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblAsignaciones> TblAsignaciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblAsignacionesEjecutivosSucursales> TblAsignacionesEjecutivosSucursales { get; set; }
@@ -293,10 +288,6 @@ namespace ImixWebService.Models
         public virtual ICollection<TblProductosCooitza> TblProductosCooitza { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblProductosCooitza> TblProductosCooitza1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblPunteosProductosTableros> TblPunteosProductosTableros { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblPunteosProductosTableros> TblPunteosProductosTableros1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblSistemasCorreosDestinatariosCorreos> TblSistemasCorreosDestinatariosCorreos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

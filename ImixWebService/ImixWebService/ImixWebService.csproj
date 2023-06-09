@@ -322,9 +322,6 @@
     <Compile Include="Models\CatEstadosTokens.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CatEstadosTokens1.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CatEstadosTransacciones.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
@@ -347,9 +344,6 @@
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CatLugares.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CatLugaresEmisionIdentificaciones.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CatMeses.cs">
@@ -502,9 +496,6 @@
     <Compile Include="Models\CatTiposRemesas.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CatTiposTableros.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CatTipoTransacciones.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
@@ -518,9 +509,6 @@
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\constanciasLaborales.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CustomersInformations.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\db.Context.cs">
@@ -542,27 +530,9 @@
     <Compile Include="Models\MunicipiosRepublicas.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\obSubModulo_Result.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\obtenerSubmodulo_Result.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\RespuestaApi\RespuestaApi.cs" />
     <Compile Include="Models\RespuestaRespos\GuardarTransaccionResult.cs" />
     <Compile Include="Models\RespuestaRespos\RepoResponse.cs" />
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TblAccountInformation.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tblAdminpantalla.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
@@ -570,12 +540,6 @@
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblAgencias.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TblAsambleas.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TblAsambleas1.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblAsignaciones.cs">
@@ -602,9 +566,6 @@
     <Compile Include="Models\TblCaracterisitcasGrabacion.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TblCardsInformations.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TblCarteraCredito.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
@@ -626,16 +587,10 @@
     <Compile Include="Models\TblConsultasChatbot.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TblConsultasIPass.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TblConvivio.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblConvivioImagenes.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TblCuentasAsociados.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblDeclaracionConcentimientolg.cs">
@@ -743,9 +698,6 @@
     <Compile Include="Models\TblProveedores.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TblPunteosProductosTableros.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TblResumen.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
@@ -851,8 +803,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\db.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>db.Context.cs</LastGenOutput>
       <DependentUpon>db.edmx</DependentUpon>
+      <LastGenOutput>db.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\db.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

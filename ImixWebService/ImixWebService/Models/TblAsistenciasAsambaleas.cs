@@ -27,33 +27,21 @@ namespace ImixWebService.Models
         public Nullable<long> formAppMovil { get; set; }
         public Nullable<long> formCredito { get; set; }
         public Nullable<long> formZumaPagos { get; set; }
+        public Nullable<System.DateTime> fechaCreacion { get; set; }
         public string genero { get; set; }
         public Nullable<long> idCatEstados { get; set; }
-        public string estadoCivil { get; set; }
-        public Nullable<int> edad { get; set; }
-        public string proffesionOficio { get; set; }
-        public string nacionalidad { get; set; }
-        public Nullable<long> idCatLugaresEmisionIdentificaciones { get; set; }
         public Nullable<long> idTblUsuarioRegistra { get; set; }
-        public Nullable<System.DateTime> fechaCreacion { get; set; }
         public string valorBuscado { get; set; }
         public Nullable<long> idTblusuarioModifica { get; set; }
-        public Nullable<System.DateTime> fechaModificacion { get; set; }
         public Nullable<long> idCatEstadosAsistencias { get; set; }
         public Nullable<long> repetido { get; set; }
-        public string detalle { get; set; }
-        public Nullable<long> idTblAsambleas { get; set; }
-        public string firma { get; set; }
-        public Nullable<int> ganadorSorteos { get; set; }
     
         public virtual CatOpcionesAsambleas CatOpcionesAsambleas { get; set; }
         public virtual CatOpcionesAsambleas CatOpcionesAsambleas1 { get; set; }
         public virtual CatOpcionesAsambleas CatOpcionesAsambleas2 { get; set; }
         public virtual CatOpcionesAsambleas CatOpcionesAsambleas3 { get; set; }
         public virtual CatOpcionesAsambleas CatOpcionesAsambleas4 { get; set; }
-        public virtual TblAsambleas TblAsambleas { get; set; }
         public virtual CatEstados CatEstados { get; set; }
-        public virtual CatLugaresEmisionIdentificaciones CatLugaresEmisionIdentificaciones { get; set; }
         public virtual TblUsuarios TblUsuarios { get; set; }
         public virtual TblUsuarios TblUsuarios1 { get; set; }
     }

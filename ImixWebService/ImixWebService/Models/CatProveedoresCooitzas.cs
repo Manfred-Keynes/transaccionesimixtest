@@ -14,6 +14,12 @@ namespace ImixWebService.Models
     
     public partial class CatProveedoresCooitzas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CatProveedoresCooitzas()
+        {
+            this.TblSolicitudesMoviemientos = new HashSet<TblSolicitudesMoviemientos>();
+        }
+    
         public long idCatProveedoresCooitzas { get; set; }
         public string nombre { get; set; }
         public string nit { get; set; }
@@ -31,5 +37,7 @@ namespace ImixWebService.Models
     
         public virtual TblUsuarios TblUsuarios { get; set; }
         public virtual CatEstados CatEstados { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblSolicitudesMoviemientos> TblSolicitudesMoviemientos { get; set; }
     }
 }

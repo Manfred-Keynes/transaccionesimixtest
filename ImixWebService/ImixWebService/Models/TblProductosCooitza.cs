@@ -20,7 +20,6 @@ namespace ImixWebService.Models
             this.TblAsignaciones = new HashSet<TblAsignaciones>();
             this.TblCierresProductos = new HashSet<TblCierresProductos>();
             this.TblEmpleadosMetas = new HashSet<TblEmpleadosMetas>();
-            this.TblPunteosProductosTableros = new HashSet<TblPunteosProductosTableros>();
             this.TblSucrusalesProductosCooitza = new HashSet<TblSucrusalesProductosCooitza>();
         }
     
@@ -40,8 +39,6 @@ namespace ImixWebService.Models
         public Nullable<long> idCatTiposOperacion { get; set; }
         public Nullable<long> idCatTiposConsultas { get; set; }
         public Nullable<long> idCatTiposFiltrosEvaluaciones { get; set; }
-        public Nullable<long> idCatTiposTableros { get; set; }
-        public Nullable<long> ordenTablero { get; set; }
     
         public virtual TblUsuarios TblUsuarios { get; set; }
         public virtual TblUsuarios TblUsuarios1 { get; set; }
@@ -51,15 +48,12 @@ namespace ImixWebService.Models
         public virtual CatTiposFiltrosEvaluaciones CatTiposFiltrosEvaluaciones { get; set; }
         public virtual CatTiposMedicion CatTiposMedicion { get; set; }
         public virtual CatTiposOperacion CatTiposOperacion { get; set; }
-        public virtual CatTiposTableros CatTiposTableros { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblAsignaciones> TblAsignaciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblCierresProductos> TblCierresProductos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblEmpleadosMetas> TblEmpleadosMetas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblPunteosProductosTableros> TblPunteosProductosTableros { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblSucrusalesProductosCooitza> TblSucrusalesProductosCooitza { get; set; }
     }

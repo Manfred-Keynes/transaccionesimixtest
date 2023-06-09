@@ -17,7 +17,6 @@ namespace ImixWebService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CatEstados()
         {
-            this.TblAsambleas = new HashSet<TblAsambleas>();
             this.TblAsistenciasAsambaleas = new HashSet<TblAsistenciasAsambaleas>();
             this.CatBusquedas = new HashSet<CatBusquedas>();
             this.CatPermisos = new HashSet<CatPermisos>();
@@ -89,7 +88,6 @@ namespace ImixWebService.Models
             this.CatTipoUbicaciones = new HashSet<CatTipoUbicaciones>();
             this.CatUbicaciones = new HashSet<CatUbicaciones>();
             this.constanciasLaborales = new HashSet<constanciasLaborales>();
-            this.TblConsultasIPass = new HashSet<TblConsultasIPass>();
             this.MunicipiosRepublicas = new HashSet<MunicipiosRepublicas>();
             this.Tbl_Cc_Rubros = new HashSet<Tbl_Cc_Rubros>();
             this.TblAfiliaciones = new HashSet<TblAfiliaciones>();
@@ -114,7 +112,6 @@ namespace ImixWebService.Models
             this.TblPeriodos = new HashSet<TblPeriodos>();
             this.TblProductosCooitza = new HashSet<TblProductosCooitza>();
             this.TblProveedores = new HashSet<TblProveedores>();
-            this.TblPunteosProductosTableros = new HashSet<TblPunteosProductosTableros>();
             this.TblSistemas = new HashSet<TblSistemas>();
             this.TblSolicitudes = new HashSet<TblSolicitudes>();
             this.TblSolicitudesCooitzas = new HashSet<TblSolicitudesCooitzas>();
@@ -133,8 +130,6 @@ namespace ImixWebService.Models
         public Nullable<System.DateTime> fechaModificacion { get; set; }
         public Nullable<long> idCatUsuarioModifica { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblAsambleas> TblAsambleas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblAsistenciasAsambaleas> TblAsistenciasAsambaleas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -278,8 +273,6 @@ namespace ImixWebService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<constanciasLaborales> constanciasLaborales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblConsultasIPass> TblConsultasIPass { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MunicipiosRepublicas> MunicipiosRepublicas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Cc_Rubros> Tbl_Cc_Rubros { get; set; }
@@ -327,8 +320,6 @@ namespace ImixWebService.Models
         public virtual ICollection<TblProductosCooitza> TblProductosCooitza { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblProveedores> TblProveedores { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblPunteosProductosTableros> TblPunteosProductosTableros { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblSistemas> TblSistemas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
