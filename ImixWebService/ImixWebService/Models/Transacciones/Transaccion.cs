@@ -34,7 +34,7 @@ namespace ImixWebService.Models.Transacciones
         public string departamento { get; set; }
         [Required]
         public string ciudad { get; set; }
-        [Required]
+
         public string coloniaSocio { get; set; }
         [Required]
         public string vencimientoCredito { get; set; }
