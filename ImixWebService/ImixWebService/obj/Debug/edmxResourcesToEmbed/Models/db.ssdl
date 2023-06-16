@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="cooitzacoretestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="cooitzacoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="CatOpcionesAsambleas">
     <Key>
       <PropertyRef Name="idCatOpcionesAsambleas" />
@@ -1842,7 +1842,7 @@ advertencia 6002: La tabla o vista 'cooitzacoretest.dbo.Caja2022' no tiene defin
       <PropertyRef Name="idTblTransaccionesImix" />
     </Key>
     <Property Name="idTblTransaccionesImix" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="codigoSocio" Type="nvarchar(max)" />
+    <Property Name="creditCode" Type="nvarchar(max)" />
     <Property Name="tipoIdSocio" Type="nvarchar(max)" />
     <Property Name="idDocumentoSocio" Type="nvarchar(max)" />
     <Property Name="nombreSocio" Type="nvarchar(max)" />
@@ -9578,7 +9578,7 @@ advertencia 6002: La tabla o vista 'cooitzacoretest.dbo.Caja2022' no tiene defin
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="cooitzacoretestModelStoreContainer">
+  <EntityContainer Name="cooitzacoreModelStoreContainer">
     <EntitySet Name="CatOpcionesAsambleas" EntityType="Self.CatOpcionesAsambleas" Schema="asamb" store:Type="Tables" />
     <EntitySet Name="TblAsistenciasAsambaleas" EntityType="Self.TblAsistenciasAsambaleas" Schema="asamb" store:Type="Tables" />
     <EntitySet Name="TblSmsCore" EntityType="Self.TblSmsCore" Schema="auditoria" store:Type="Tables" />

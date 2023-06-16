@@ -13,10 +13,10 @@ namespace ImixWebService.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class cooitzacoretestEntities : DbContext
+    public partial class cooitzacoretEntities : DbContext
     {
-        public cooitzacoretestEntities()
-            : base("name=cooitzacoretestEntities")
+        public cooitzacoretEntities()
+            : base("name=cooitzacoretEntities")
         {
         }
     

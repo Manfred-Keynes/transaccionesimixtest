@@ -17,7 +17,7 @@ namespace ImixWebService.Controllers
     [RoutePrefix("api/ImixTransacciones")]
     public class ImixTransaccionesController : ApiController
     {
-        private cooitzacoretestEntities db = new cooitzacoretestEntities();
+        private cooitzacoretEntities db = new cooitzacoretEntities();
         private IRepositorio repositorio;
         public ImixTransaccionesController()
         {
@@ -29,7 +29,7 @@ namespace ImixWebService.Controllers
         public async Task<IHttpActionResult> Create(Transaccion transaccion)
         {
             long? idTransaccionesImix = 0;
-
+            /** PRIMERA LLAMADA A LA BITACORA*/
             var repoRequest = await repositorio.Bitacora(transaccion, 1,0,null);
 
             if (repoRequest.codigo != 1)
@@ -42,6 +42,23 @@ namespace ImixWebService.Controllers
                 };
                 return Content(HttpStatusCode.OK, respuestaRequest);
             }
+
+            /* VALIDA QUE LOS CAMPOS OBLIGATORIOS SEAN CORRECTOS*/
+            if (!ModelState.IsValid)
+            {
+                var entradasErroneas = ModelState
+                    .Where(x => x.Value.Errors.Any())
+                    .Select(x => x.Key.Split('.').Last())
+                    .ToList();
+                var respuestaRequest = new RespuestaApi()
+                {
+                    codigo = 5001,
+                    descripcion = $"Existen datos de entrada vacios o nulos: {string.Join(",", entradasErroneas)}",
+                    idCooitza = 0
+                };
+                return Content(HttpStatusCode.OK, respuestaRequest);
+            }
+
             idTransaccionesImix = repoRequest.idCooitza;
 
 

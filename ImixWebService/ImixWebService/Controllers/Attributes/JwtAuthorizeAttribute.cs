@@ -36,8 +36,21 @@ namespace ImixWebService.Controllers.Attributes
 
             if (string.IsNullOrEmpty(token))
             {
-                actionContext.Response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                //actionContext.Response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                //return;
+
+                var responseObj = new
+                {
+                    Codigo = 5001,
+                    Descripcion = "Token invalido",
+                    Token = "Unauthorized"
+                };
+
+                var response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                response.Content = new System.Net.Http.ObjectContent<object>(responseObj, new System.Net.Http.Formatting.JsonMediaTypeFormatter());
+                actionContext.Response = response;
                 return;
+
             }
 
             try
@@ -51,7 +64,18 @@ namespace ImixWebService.Controllers.Attributes
             }
             catch
             {
-                actionContext.Response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                //actionContext.Response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                //return;
+                var responseObj = new
+                {
+                    Codigo = 5001,
+                    Descripcion = "Token invalido",
+                    Token = "Unauthorized"
+                };
+
+                var response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                response.Content = new System.Net.Http.ObjectContent<object>(responseObj, new System.Net.Http.Formatting.JsonMediaTypeFormatter());
+                actionContext.Response = response;
                 return;
             }
 

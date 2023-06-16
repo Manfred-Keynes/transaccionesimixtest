@@ -28,7 +28,7 @@ namespace ImixWebService.Models
         public Nullable<long> idTblUsuarioModifica { get; set; }
     
         public virtual TblUsuarios TblUsuarios { get; set; }
-        public virtual TblUsuarios TblUsuarioModifica { get; set; }
+        public virtual TblUsuarios TblUsuarios1 { get; set; }
         public virtual CatEstados CatEstados { get; set; }
         public virtual CatServiciosMonitor CatServiciosMonitor { get; set; }
     }

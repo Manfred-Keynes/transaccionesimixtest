@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -43,8 +44,20 @@ namespace ImixWebService.Controllers.Attributes
             }
             catch (Exception)
             {
-                actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
-                return;
+                //actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
+                //return;
+
+                var responseObj = new
+                {
+                    Codigo = 4001,
+                    Descripcion = "Credenciales invalidas",
+                    Token = "Unauthorized"
+                };
+
+                var response = HttpContext.Current.Response;
+                response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                response.Write(JsonConvert.SerializeObject(responseObj));
+                response.End();
             }
 
             base.OnActionExecuting(actionContext);

@@ -20,12 +20,29 @@ namespace ImixWebService.Controllers
     [RoutePrefix("api/Token")]
     public class TokenController : ApiController
     {
-        private cooitzacoretestEntities db = new cooitzacoretestEntities();
+        private cooitzacoretEntities db = new cooitzacoretEntities();
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
         public async Task<IHttpActionResult> Login(LoginViewModel login)
         {
+            /* VALIDA QUE LOS CAMPOS OBLIGATORIOS SEAN CORRECTOS*/
+            if (!ModelState.IsValid || login == null)
+            {
+                var entradasErroneas = ModelState
+                    .Where(x => x.Value.Errors.Any())
+                    .Select(x => x.Key.Split('.').Last())
+                    .ToList();
+                // Devolver un error en caso de credenciales inválidas
+                var responses = new
+                {
+                    Codigo = 401,
+                    Descripcion = "Credenciales invalidas",
+                    Token = "Unauthorized"
+                };
+
+                return Content(HttpStatusCode.Unauthorized, responses);
+            }
             // Verificar las credenciales del usuario y generar el token si es válido
 
             var estatusLogin = await ValidarCredenciales(login.usuarioWebService, login.clave, login.llave);
@@ -45,7 +62,7 @@ namespace ImixWebService.Controllers
                     {
                 new Claim(ClaimTypes.Name, login.usuarioWebService)
                 }),
-                    Expires = now.AddMinutes(30),
+                    Expires = now.AddMinutes(10),
                     NotBefore = now,
                     SigningCredentials = new SigningCredentials(
                         new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret)),
@@ -62,7 +79,14 @@ namespace ImixWebService.Controllers
             }
 
             // Devolver un error en caso de credenciales inválidas
-            return BadRequest("Invalid credentials.");
+            var response = new
+            {
+                Codigo = 401,
+                Descripcion = "Credenciales invalidas",
+                Token = "Unauthorized"
+            };
+
+            return Content(HttpStatusCode.Unauthorized, response);
         }
 
         public async Task<bool> ValidarCredenciales(string usuarioNombre, string password, string token)
