@@ -42,7 +42,7 @@ namespace ImixWebService.Controllers
                 };
                 return Content(HttpStatusCode.OK, respuestaRequest);
             }
-
+            idTransaccionesImix = repoRequest.idCooitza;
             /* VALIDA QUE LOS CAMPOS OBLIGATORIOS SEAN CORRECTOS*/
             if (!ModelState.IsValid)
             {
@@ -56,11 +56,18 @@ namespace ImixWebService.Controllers
                     descripcion = $"Existen datos de entrada vacios o nulos: {string.Join(",", entradasErroneas)}",
                     idCooitza = 0
                 };
+                var repo = await repositorio.Bitacora(null, 3, idTransaccionesImix, respuestaRequest);
+                if (repo.codigo != 1)
+                {
+                    return Content(HttpStatusCode.OK, new
+                    {
+                        codigo = 101,
+                        descripcion = repo.descripcion,
+                        idCooitza = repo.idCooitza
+                    });
+                }
                 return Content(HttpStatusCode.OK, respuestaRequest);
             }
-
-            idTransaccionesImix = repoRequest.idCooitza;
-
 
             var repoSave = await repositorio.Bitacora(transaccion, 2, idTransaccionesImix, null);
             if (repoSave.codigo != 1)
