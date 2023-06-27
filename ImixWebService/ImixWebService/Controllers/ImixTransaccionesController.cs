@@ -134,15 +134,16 @@ namespace ImixWebService.Controllers
                     idCooitza = (long?)0
                 };
 
-                repoResult = await repositorio.BitacoraPago(0, 1, payment, null, usuario.idTblUsuarios);
-                if (repoResult.codigo != 1)
-                {
-                    //Asignar nuevos valores a las propiedades
-                    result = new { codigo = 101, descripcion = repoResult.descripcion, resultado = (object)null, idCooitza = (long?)0 };
-                }
                 return Content(HttpStatusCode.OK, result);
             }
 
+            repoResult = await repositorio.BitacoraPago(0, 1, payment, null, usuario.idTblUsuarios);
+            if (repoResult.codigo != 1)
+            {
+                //Asignar nuevos valores a las propiedades
+                result = new { codigo = 101, descripcion = repoResult.descripcion, resultado = (object)null, idCooitza = (long?)0 };
+                return Content(HttpStatusCode.OK, result);
+            }
 
             if (!ModelState.IsValid)
             {
