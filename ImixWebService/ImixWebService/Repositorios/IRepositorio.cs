@@ -14,7 +14,7 @@ namespace ImixWebService.Repositorios
 {
     internal interface IRepositorio
     {
-        Task<RepoResponse> Bitacora(Transaccion transaccion, int tipo, long? idTransaccionesImix, RespuestaApi respuestaApi);
+        Task<RepoResponse> Bitacora(Transaccion transaccion, int tipo, long? idTransaccionesImix, RespuestaApi respuestaApi, long? idUsuario);
         Task<GuardarTransaccionResult> GuardarTransaccion(TransaccionesImix transaccionesImix, int operacion);
         Task<PagosRepositorio> BitacoraPago(long? idTblPagosImix, int update, object result, ResutldadoWS resutldadoWS, long? idTblUsuario);
     }

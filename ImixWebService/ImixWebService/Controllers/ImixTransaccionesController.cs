@@ -9,6 +9,7 @@ using ImixWebService.Repositorios;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -33,8 +34,11 @@ namespace ImixWebService.Controllers
         public async Task<IHttpActionResult> Create(Transaccion transaccion)
         {
             long? idTransaccionesImix = 0;
+            var usuariClaims = User.Identity.Name;
+
+            var usuario = await db.TblUsuarios.FirstOrDefaultAsync(x => x.usuario == usuariClaims);
             /** PRIMERA LLAMADA A LA BITACORA*/
-            var repoRequest = await repositorio.Bitacora(transaccion, 1, 0, null);
+            var repoRequest = await repositorio.Bitacora(transaccion, 1, 0, null, usuario.idTblUsuarios);
 
             if (repoRequest.codigo != 1)
             {
@@ -60,7 +64,7 @@ namespace ImixWebService.Controllers
                     descripcion = $"Existen datos de entrada vacios o nulos: {string.Join(",", entradasErroneas)}",
                     idCooitza = 0
                 };
-                var repo = await repositorio.Bitacora(null, 3, idTransaccionesImix, respuestaRequest);
+                var repo = await repositorio.Bitacora(null, 3, idTransaccionesImix, respuestaRequest,0);
                 if (repo.codigo != 1)
                 {
                     return Content(HttpStatusCode.OK, new
@@ -73,7 +77,7 @@ namespace ImixWebService.Controllers
                 return Content(HttpStatusCode.OK, respuestaRequest);
             }
 
-            var repoSave = await repositorio.Bitacora(transaccion, 2, idTransaccionesImix, null);
+            var repoSave = await repositorio.Bitacora(transaccion, 2, idTransaccionesImix, null,0);
             if (repoSave.codigo != 1)
             {
                 var respuestaResponse = new RespuestaApi()
@@ -93,7 +97,7 @@ namespace ImixWebService.Controllers
                 descripcion = repoRequest.descripcion,
                 idCooitza = idTransaccionesImix
             };
-            var repoResponses = await repositorio.Bitacora(null, 3, idTransaccionesImix, respuesta);
+            var repoResponses = await repositorio.Bitacora(null, 3, idTransaccionesImix, respuesta,0);
 
             if (repoResponses.codigo != 1)
             {
@@ -116,8 +120,10 @@ namespace ImixWebService.Controllers
         {
             var result = new { codigo = 0, descripcion = string.Empty, resultado = (object)null, idCooitza = (long?)0 };
 
+
             var usurClaim = User.Identity.Name;
             var usuario = db.TblUsuarios.FirstOrDefault(x => x.usuario == usurClaim);
+            PagosRepositorio repoResult = new PagosRepositorio();
             if (usuario == null)
             {
                 result = new
@@ -127,13 +133,43 @@ namespace ImixWebService.Controllers
                     resultado = (object)null,
                     idCooitza = (long?)0
                 };
+
+                repoResult = await repositorio.BitacoraPago(0, 1, payment, null, usuario.idTblUsuarios);
+                if (repoResult.codigo != 1)
+                {
+                    //Asignar nuevos valores a las propiedades
+                    result = new { codigo = 101, descripcion = repoResult.descripcion, resultado = (object)null, idCooitza = (long?)0 };
+                }
+                return Content(HttpStatusCode.OK, result);
             }
-            var repoResult = await repositorio.BitacoraPago(0, 1, payment, null, usuario.idTblUsuarios);
-            if (repoResult.codigo != 1)
+
+
+            if (!ModelState.IsValid)
             {
-                //Asignar nuevos valores a las propiedades
-                result = new { codigo = 101, descripcion = repoResult.descripcion, resultado = (object)null, idCooitza = (long?)0 };
+                var entradasErroneas = ModelState
+                    .Where(x => x.Value.Errors.Any())
+                    .Select(x => x.Key.Split('.').Last())
+                    .ToList();
+
+                result = new
+                {
+                    codigo = 5001,
+                    descripcion = $"Existen datos de entrada vacios o nulos: {string.Join(",", entradasErroneas)}",
+                    resultado = (object)null,
+                    idCooitza = (long?)0
+                };
+
+                repoResult = await repositorio.BitacoraPago(repoResult.idTblPagosImix, 5, result, null, 0);//guarda en la bitacora ok
+                if (repoResult.codigo != 1)/**valida si se guardaron los registros con exito si el codigo que devuelve el repositorio es diferente de 0 se procede a modifica el objeto de respuesta*/
+                {
+                    //Asignar nuevos valores a las propiedades
+                    result = new { codigo = 501, descripcion = repoResult.descripcion, resultado = (object)null, idCooitza = repoResult.idTblPagosImix };
+                    return Content(HttpStatusCode.OK, result);
+                }
+
+                return Content(HttpStatusCode.OK, result);
             }
+
             //obtenemos la configuracion del la consulta desde la base de datos
             var configuracion = db.TblConfiguracionesPagos.FirstOrDefault(x => x.idCatEstados == 1);
             //se construye la fecha en el formato solicitado

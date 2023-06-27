@@ -18,7 +18,7 @@ namespace ImixWebService.Repositorios
     public class Repositorio : IRepositorio
     {
         private cooitzacoretEntities db = new cooitzacoretEntities();
-        public async Task<RepoResponse> Bitacora(Transaccion transaccion, int tipo, long? idTransaccionesImix, RespuestaApi respuestaApi)
+        public async Task<RepoResponse> Bitacora(Transaccion transaccion, int tipo, long? idTransaccionesImix, RespuestaApi respuestaApi, long? idUsuario)
         {
             RepoResponse respuesta = new RepoResponse();
 
