@@ -109,6 +109,8 @@ namespace ImixWebService.Models
         public virtual DbSet<TblHistoriales1> TblHistoriales1 { get; set; }
         public virtual DbSet<TblProveedores> TblProveedores { get; set; }
         public virtual DbSet<TblCarteraCredito1> TblCarteraCredito1 { get; set; }
+        public virtual DbSet<TblConfiguracionesPagos> TblConfiguracionesPagos { get; set; }
+        public virtual DbSet<TblPagosImix> TblPagosImix { get; set; }
         public virtual DbSet<TransaccionesImix> TransaccionesImix { get; set; }
         public virtual DbSet<CatTipoInstituciones> CatTipoInstituciones { get; set; }
         public virtual DbSet<CatTipoTransacciones> CatTipoTransacciones { get; set; }

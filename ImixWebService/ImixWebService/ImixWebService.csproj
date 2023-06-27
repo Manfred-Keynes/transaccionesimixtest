@@ -530,6 +530,12 @@
     <Compile Include="Models\MunicipiosRepublicas.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Pagos\PagosRepositorio.cs" />
+    <Compile Include="Models\Pagos\Payment.cs" />
+    <Compile Include="Models\Pagos\Resolve\ContentData.cs" />
+    <Compile Include="Models\Pagos\Resolve\ContentError.cs" />
+    <Compile Include="Models\Pagos\Resolve\ResutldadoWS.cs" />
+    <Compile Include="Models\Pagos\TblPagosImixDto.cs" />
     <Compile Include="Models\RespuestaApi\RespuestaApi.cs" />
     <Compile Include="Models\RespuestaRespos\GuardarTransaccionResult.cs" />
     <Compile Include="Models\RespuestaRespos\RepoResponse.cs" />
@@ -579,6 +585,9 @@
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblCoasiste.cs">
+      <DependentUpon>db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblConfiguracionesPagos.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblConfiguracionesRch.cs">
@@ -672,6 +681,9 @@
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblMonitorGrabacion.cs">
+      <DependentUpon>db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblPagosImix.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblPeriodos.cs">

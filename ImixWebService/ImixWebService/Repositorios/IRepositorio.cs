@@ -1,4 +1,6 @@
 ﻿using ImixWebService.Models;
+using ImixWebService.Models.Pagos;
+using ImixWebService.Models.Pagos.Resolve;
 using ImixWebService.Models.RespuestaApi;
 using ImixWebService.Models.RespuestaRespos;
 using ImixWebService.Models.Transacciones;
@@ -14,5 +16,6 @@ namespace ImixWebService.Repositorios
     {
         Task<RepoResponse> Bitacora(Transaccion transaccion, int tipo, long? idTransaccionesImix, RespuestaApi respuestaApi);
         Task<GuardarTransaccionResult> GuardarTransaccion(TransaccionesImix transaccionesImix, int operacion);
+        Task<PagosRepositorio> BitacoraPago(long? idTblPagosImix, int update, object result, ResutldadoWS resutldadoWS, long? idTblUsuario);
     }
 }

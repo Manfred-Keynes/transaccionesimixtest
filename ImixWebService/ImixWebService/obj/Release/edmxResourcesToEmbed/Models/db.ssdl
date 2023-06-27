@@ -1837,6 +1837,42 @@ advertencia 6002: La tabla o vista 'cooitzacoretest.dbo.Caja2022' no tiene defin
     <Property Name="mes" Type="bigint" />
     <Property Name="anio" Type="bigint" />
   </EntityType>
+  <EntityType Name="TblConfiguracionesPagos">
+    <Key>
+      <PropertyRef Name="idTblConfiguracionesPagos" />
+    </Key>
+    <Property Name="idTblConfiguracionesPagos" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="nvarchar(max)" />
+    <Property Name="requestDate" Type="nvarchar(max)" />
+    <Property Name="clientId" Type="nvarchar(max)" />
+    <Property Name="requestSignature" Type="nvarchar(max)" />
+    <Property Name="idCatEstados" Type="bigint" />
+    <Property Name="fechaAlta" Type="datetime" />
+    <Property Name="idTblUsuarioAlta" Type="bigint" />
+    <Property Name="fechaModificacion" Type="datetime" />
+    <Property Name="idTblUsuarioModifica" Type="bigint" />
+  </EntityType>
+  <EntityType Name="TblPagosImix">
+    <Key>
+      <PropertyRef Name="idTblPagosImix" />
+    </Key>
+    <Property Name="idTblPagosImix" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idCreditoImix" Type="nvarchar(max)" />
+    <Property Name="idCreditoCooitza" Type="nvarchar(max)" />
+    <Property Name="montoPago" Type="nvarchar(max)" />
+    <Property Name="fechaPago" Type="datetime" />
+    <Property Name="jsonRequestCliente" Type="nvarchar(max)" />
+    <Property Name="resultadoRequestCliente" Type="nvarchar(max)" />
+    <Property Name="responseImix" Type="nvarchar(max)" />
+    <Property Name="responsecws" Type="nvarchar(max)" />
+    <Property Name="idCatEstados" Type="bigint" />
+    <Property Name="fechaAlta" Type="datetime" />
+    <Property Name="idTblUsuarioAlta" Type="bigint" />
+    <Property Name="error" Type="int" />
+    <Property Name="resultcreditId" Type="nvarchar(max)" />
+    <Property Name="resultCode" Type="nvarchar(max)" />
+    <Property Name="resultCreditPaymentId" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="TransaccionesImix">
     <Key>
       <PropertyRef Name="idTblTransaccionesImix" />
@@ -6926,6 +6962,30 @@ advertencia 6002: La tabla o vista 'cooitzacoretest.dbo.Caja2022' no tiene defin
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TblConfiguracionesPagos_CatEstados">
+    <End Role="CatEstados" Type="Self.CatEstados" Multiplicity="0..1" />
+    <End Role="TblConfiguracionesPagos" Type="Self.TblConfiguracionesPagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CatEstados">
+        <PropertyRef Name="idCatEstados" />
+      </Principal>
+      <Dependent Role="TblConfiguracionesPagos">
+        <PropertyRef Name="idCatEstados" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblConfiguracionesPagos_TblUsuarios">
+    <End Role="TblUsuarios" Type="Self.TblUsuarios" Multiplicity="0..1" />
+    <End Role="TblConfiguracionesPagos" Type="Self.TblConfiguracionesPagos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsuarios">
+        <PropertyRef Name="idTblUsuarios" />
+      </Principal>
+      <Dependent Role="TblConfiguracionesPagos">
+        <PropertyRef Name="idTblUsuarioAlta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TblConfiguracionesRchTest_CatEstados">
     <End Role="CatEstados" Type="Self.CatEstados" Multiplicity="0..1" />
     <End Role="TblConfiguracionesRch" Type="Self.TblConfiguracionesRch" Multiplicity="*" />
@@ -8570,6 +8630,30 @@ advertencia 6002: La tabla o vista 'cooitzacoretest.dbo.Caja2022' no tiene defin
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TblPagosImix_CatEstados">
+    <End Role="CatEstados" Type="Self.CatEstados" Multiplicity="0..1" />
+    <End Role="TblPagosImix" Type="Self.TblPagosImix" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CatEstados">
+        <PropertyRef Name="idCatEstados" />
+      </Principal>
+      <Dependent Role="TblPagosImix">
+        <PropertyRef Name="idCatEstados" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblPagosImix_TblUsuarios">
+    <End Role="TblUsuarios" Type="Self.TblUsuarios" Multiplicity="0..1" />
+    <End Role="TblPagosImix" Type="Self.TblPagosImix" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblUsuarios">
+        <PropertyRef Name="idTblUsuarios" />
+      </Principal>
+      <Dependent Role="TblPagosImix">
+        <PropertyRef Name="idTblUsuarioAlta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TblPeriodos_CatEstados">
     <End Role="CatEstados" Type="Self.CatEstados" Multiplicity="0..1" />
     <End Role="TblPeriodos" Type="Self.TblPeriodos" Multiplicity="*" />
@@ -9663,6 +9747,8 @@ advertencia 6002: La tabla o vista 'cooitzacoretest.dbo.Caja2022' no tiene defin
     <EntitySet Name="TblHistoriales1" EntityType="Self.TblHistoriales1" Schema="glob" Table="TblHistoriales" store:Type="Tables" />
     <EntitySet Name="TblProveedores" EntityType="Self.TblProveedores" Schema="glob" store:Type="Tables" />
     <EntitySet Name="TblCarteraCredito1" EntityType="Self.TblCarteraCredito1" Schema="historico" Table="TblCarteraCredito" store:Type="Tables" />
+    <EntitySet Name="TblConfiguracionesPagos" EntityType="Self.TblConfiguracionesPagos" Schema="imix" store:Type="Tables" />
+    <EntitySet Name="TblPagosImix" EntityType="Self.TblPagosImix" Schema="imix" store:Type="Tables" />
     <EntitySet Name="TransaccionesImix" EntityType="Self.TransaccionesImix" Schema="imix" store:Type="Tables" />
     <EntitySet Name="CatTipoInstituciones" EntityType="Self.CatTipoInstituciones" Schema="ive" store:Type="Tables" />
     <EntitySet Name="CatTipoTransacciones" EntityType="Self.CatTipoTransacciones" Schema="ive" store:Type="Tables" />
@@ -10984,6 +11070,14 @@ advertencia 6002: La tabla o vista 'cooitzacoretest.dbo.Caja2022' no tiene defin
       <End Role="TblUsuarios" EntitySet="TblUsuarios" />
       <End Role="TblCierresProductos" EntitySet="TblCierresProductos" />
     </AssociationSet>
+    <AssociationSet Name="FK_TblConfiguracionesPagos_CatEstados" Association="Self.FK_TblConfiguracionesPagos_CatEstados">
+      <End Role="CatEstados" EntitySet="CatEstados" />
+      <End Role="TblConfiguracionesPagos" EntitySet="TblConfiguracionesPagos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblConfiguracionesPagos_TblUsuarios" Association="Self.FK_TblConfiguracionesPagos_TblUsuarios">
+      <End Role="TblUsuarios" EntitySet="TblUsuarios" />
+      <End Role="TblConfiguracionesPagos" EntitySet="TblConfiguracionesPagos" />
+    </AssociationSet>
     <AssociationSet Name="FK_TblConfiguracionesRchTest_CatEstados" Association="Self.FK_TblConfiguracionesRchTest_CatEstados">
       <End Role="CatEstados" EntitySet="CatEstados" />
       <End Role="TblConfiguracionesRch" EntitySet="TblConfiguracionesRch" />
@@ -11531,6 +11625,14 @@ advertencia 6002: La tabla o vista 'cooitzacoretest.dbo.Caja2022' no tiene defin
     <AssociationSet Name="FK_TblMonitorGrabacion_TblUsuarios" Association="Self.FK_TblMonitorGrabacion_TblUsuarios">
       <End Role="TblUsuarios" EntitySet="TblUsuarios" />
       <End Role="TblMonitorGrabacion" EntitySet="TblMonitorGrabacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblPagosImix_CatEstados" Association="Self.FK_TblPagosImix_CatEstados">
+      <End Role="CatEstados" EntitySet="CatEstados" />
+      <End Role="TblPagosImix" EntitySet="TblPagosImix" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblPagosImix_TblUsuarios" Association="Self.FK_TblPagosImix_TblUsuarios">
+      <End Role="TblUsuarios" EntitySet="TblUsuarios" />
+      <End Role="TblPagosImix" EntitySet="TblPagosImix" />
     </AssociationSet>
     <AssociationSet Name="FK_TblPeriodos_CatEstados" Association="Self.FK_TblPeriodos_CatEstados">
       <End Role="CatEstados" EntitySet="CatEstados" />

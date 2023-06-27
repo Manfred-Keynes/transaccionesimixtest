@@ -69,6 +69,7 @@ namespace ImixWebService.Models
             this.TblCertificacionesTecnicos1 = new HashSet<TblCertificacionesTecnicos>();
             this.TblCierresProductos = new HashSet<TblCierresProductos>();
             this.TblCierresProductos1 = new HashSet<TblCierresProductos>();
+            this.TblConfiguracionesPagos = new HashSet<TblConfiguracionesPagos>();
             this.TblConfiguracionesRch = new HashSet<TblConfiguracionesRch>();
             this.TblConfiguracionesRch1 = new HashSet<TblConfiguracionesRch>();
             this.TblDeclaracionSalud = new HashSet<TblDeclaracionSalud>();
@@ -91,6 +92,7 @@ namespace ImixWebService.Models
             this.TblMigracion = new HashSet<TblMigracion>();
             this.TblMigracion1 = new HashSet<TblMigracion>();
             this.TblMonitorGrabacion = new HashSet<TblMonitorGrabacion>();
+            this.TblPagosImix = new HashSet<TblPagosImix>();
             this.tblpremora = new HashSet<tblpremora>();
             this.tblpremora1 = new HashSet<tblpremora>();
             this.TblProductosCooitza = new HashSet<TblProductosCooitza>();
@@ -237,6 +239,8 @@ namespace ImixWebService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblCierresProductos> TblCierresProductos1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblConfiguracionesPagos> TblConfiguracionesPagos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblConfiguracionesRch> TblConfiguracionesRch { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblConfiguracionesRch> TblConfiguracionesRch1 { get; set; }
@@ -280,6 +284,8 @@ namespace ImixWebService.Models
         public virtual ICollection<TblMigracion> TblMigracion1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblMonitorGrabacion> TblMonitorGrabacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblPagosImix> TblPagosImix { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblpremora> tblpremora { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

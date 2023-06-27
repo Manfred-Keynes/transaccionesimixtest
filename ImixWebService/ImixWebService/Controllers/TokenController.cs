@@ -46,7 +46,7 @@ namespace ImixWebService.Controllers
             // Verificar las credenciales del usuario y generar el token si es válido
 
             var estatusLogin = await ValidarCredenciales(login.usuarioWebService, login.clave, login.llave);
-
+            //SE VALIDAN LAS CREDECIALES Y SI ES TRUE SE GENERAN LAS CLAIMS
             if (estatusLogin)
             {
                 var secret = ConfigurationManager.AppSettings["TokenSecret"];
@@ -62,7 +62,7 @@ namespace ImixWebService.Controllers
                     {
                 new Claim(ClaimTypes.Name, login.usuarioWebService)
                 }),
-                    Expires = now.AddMinutes(10),
+                    Expires = now.AddMinutes(5),
                     NotBefore = now,
                     SigningCredentials = new SigningCredentials(
                         new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret)),

@@ -1,10 +1,14 @@
 ﻿using ImixWebService.Models;
+using ImixWebService.Models.Pagos;
+using ImixWebService.Models.Pagos.Resolve;
 using ImixWebService.Models.RespuestaApi;
 using ImixWebService.Models.RespuestaRespos;
 using ImixWebService.Models.Transacciones;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -33,14 +37,15 @@ namespace ImixWebService.Repositorios
                 {
                     transaccionesImix.jsonRequest = JsonConvert.SerializeObject(transaccion);
                 }
-                guardadoExitoso = await GuardarTransaccion(transaccionesImix,1);
+                guardadoExitoso = await GuardarTransaccion(transaccionesImix, 1);
                 respuesta.codigo = guardadoExitoso.Exitoso ? 1 : 0;
                 respuesta.descripcion = guardadoExitoso.descripcion;
                 respuesta.idCooitza = guardadoExitoso.IdGenerado;
             }
             else if (tipo == 2)
             {
-                TransaccionesImix transaccionesImix = db.TransaccionesImix.FirstOrDefault(x=> x.idTblTransaccionesImix == idTransaccionesImix);
+                TransaccionesImix transaccionesImix = db.TransaccionesImix.FirstOrDefault(x => x.idTblTransaccionesImix == idTransaccionesImix);
+                transaccionesImix.internalCreditCode = transaccion.internalCreditCode;
                 transaccionesImix.creditCode = transaccion.creditCode;
                 transaccionesImix.tipoIdSocio = transaccion.tipoIdSocio;
                 transaccionesImix.idDocumentoSocio = transaccion.idDocumentoSocio;
@@ -72,7 +77,7 @@ namespace ImixWebService.Repositorios
                 transaccionesImix.idCatEstados = 1;
                 transaccionesImix.fechaCreacion = DateTime.Now;
 
-                guardadoExitoso = await GuardarTransaccion(transaccionesImix,2);
+                guardadoExitoso = await GuardarTransaccion(transaccionesImix, 2);
                 respuesta.codigo = guardadoExitoso.Exitoso ? 1 : 0;
                 respuesta.descripcion = guardadoExitoso.descripcion;
                 respuesta.idCooitza = guardadoExitoso.IdGenerado;
@@ -115,7 +120,7 @@ namespace ImixWebService.Repositorios
                     resultado.IdGenerado = 0;
                     resultado.descripcion = "Error al guardar el registro: " + ex.Message;
                 }
-                
+
             }
             if (operacion == 2)
             {
@@ -139,5 +144,171 @@ namespace ImixWebService.Repositorios
 
         }
 
+
+        public async Task<PagosRepositorio> BitacoraPago(long? idTblPagosImix, int update, object result, ResutldadoWS resultWS, long? idTblUsuario)
+        {
+            PagosRepositorio pagosRepositorio = new PagosRepositorio();
+            switch (update)
+            {
+                case 1:
+                    try
+                    {
+                        using (var db = new cooitzacoretEntities())
+                        {
+                            var tblPagosImix = new TblPagosImix();
+                            tblPagosImix.jsonRequestCliente = JsonConvert.SerializeObject(result);
+                            tblPagosImix.fechaAlta = DateTime.Now;
+                            tblPagosImix.idCatEstados = 1;
+                            tblPagosImix.idTblUsuarioAlta = idTblUsuario;
+                            db.TblPagosImix.Add(tblPagosImix);
+                            db.SaveChanges();
+
+                            pagosRepositorio.codigo = 1;
+                            pagosRepositorio.descripcion = "SUCCESS";
+                            pagosRepositorio.idTblPagosImix = tblPagosImix.idTblPagosImix;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        pagosRepositorio.codigo = 2;
+                        pagosRepositorio.descripcion = "ERROR " + ex.Message.ToUpper();
+
+                    }
+                    return pagosRepositorio;
+                case 2:
+                    try
+                    {
+                        using (var db = new cooitzacoretEntities())
+                        {
+                            var tblPagosImix = await db.TblPagosImix.FindAsync(idTblPagosImix);
+                            if (tblPagosImix == null)
+                            {
+                                pagosRepositorio.codigo = 1;
+                                pagosRepositorio.descripcion = "NO EXISTE REFERENCIA DEL ID PROPORCIONADO";
+                                return pagosRepositorio;
+                            }
+                            
+                            tblPagosImix.idCreditoImix = ((dynamic)result).data.creditId;
+                            tblPagosImix.idCreditoCooitza = ((dynamic)result).data.code;
+                            tblPagosImix.montoPago = ((dynamic)result)?.data?.paymentValue ?? 0m;
+
+
+                            string fechaPago = ((dynamic)result).data.paymentDate;
+                            var fechaPego = DateTime.TryParseExact(fechaPago, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate) ? parsedDate : (DateTime?)null;
+                            tblPagosImix.fechaPago = fechaPego;
+                            tblPagosImix.resultadoRequestCliente = JsonConvert.SerializeObject(result);
+                            db.Entry(tblPagosImix).State = EntityState.Modified;
+                            await db.SaveChangesAsync();
+
+                            pagosRepositorio.codigo = 1;
+                            pagosRepositorio.descripcion = "SUCCESS";
+                            pagosRepositorio.idTblPagosImix = tblPagosImix.idTblPagosImix;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        pagosRepositorio.codigo = 2;
+                        pagosRepositorio.descripcion = "ERROR " + ex.Message.ToUpper();
+                    }
+                    return pagosRepositorio;
+                case 3:
+                    try
+                    {
+                        using (var db = new cooitzacoretEntities())
+                        {
+                            var tblPagosImix = await db.TblPagosImix.FindAsync(idTblPagosImix);
+                            if (tblPagosImix == null)
+                            {
+                                pagosRepositorio.codigo = 1;
+                                pagosRepositorio.descripcion = "NO EXISTE REFERENCIA DEL ID PROPORCIONADO";
+                                return pagosRepositorio;
+                            }
+
+                            
+                            tblPagosImix.responseImix = JsonConvert.SerializeObject(result);
+                            db.Entry(tblPagosImix).State = EntityState.Modified;
+                            await db.SaveChangesAsync();
+
+                            pagosRepositorio.codigo = 1;
+                            pagosRepositorio.descripcion = "SUCCESS";
+                            pagosRepositorio.idTblPagosImix = tblPagosImix.idTblPagosImix;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        pagosRepositorio.codigo = 2;
+                        pagosRepositorio.descripcion = "ERROR " + ex.Message.ToUpper();
+                    }
+                    return pagosRepositorio;
+                case 4:
+                    try
+                    {
+                        using (var db = new cooitzacoretEntities())
+                        {
+                            var tblPagosImix = await db.TblPagosImix.FindAsync(idTblPagosImix);
+                            if (tblPagosImix == null)
+                            {
+                                pagosRepositorio.codigo = 1;
+                                pagosRepositorio.descripcion = "NO EXISTE REFERENCIA DEL ID PROPORCIONADO";
+                                return pagosRepositorio;
+                            }
+
+                            tblPagosImix.error = 2;
+                            tblPagosImix.resultcreditId = resultWS.data.creditId;
+                            tblPagosImix.resultCode = resultWS.data.code;
+                            tblPagosImix.resultCreditPaymentId = resultWS.data.creditPaymentId;
+                            tblPagosImix.responseImix = JsonConvert.SerializeObject(resultWS);
+                            db.Entry(tblPagosImix).State = EntityState.Modified;
+                            await db.SaveChangesAsync();
+
+                            pagosRepositorio.codigo = 1;
+                            pagosRepositorio.descripcion = "SUCCESS";
+                            pagosRepositorio.idTblPagosImix = tblPagosImix.idTblPagosImix;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        pagosRepositorio.codigo = 2;
+                        pagosRepositorio.descripcion = "ERROR " + ex.Message.ToUpper();
+                    }
+                    return pagosRepositorio;
+                case 5:
+                    try
+                    {
+                        using (var db = new cooitzacoretEntities())
+                        {
+                            var tblPagosImix = await db.TblPagosImix.FindAsync(idTblPagosImix);
+                            if (tblPagosImix == null)
+                            {
+                                pagosRepositorio.codigo = 1;
+                                pagosRepositorio.descripcion = "NO EXISTE REFERENCIA DEL ID PROPORCIONADO";
+                                return pagosRepositorio;
+                            }
+
+
+                            tblPagosImix.responsecws = JsonConvert.SerializeObject(result);
+                            db.Entry(tblPagosImix).State = EntityState.Modified;
+                            await db.SaveChangesAsync();
+
+                            pagosRepositorio.codigo = 1;
+                            pagosRepositorio.descripcion = "SUCCESS";
+                            pagosRepositorio.idTblPagosImix = tblPagosImix.idTblPagosImix;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        pagosRepositorio.codigo = 2;
+                        pagosRepositorio.descripcion = "ERROR " + ex.Message.ToUpper();
+                    }
+                    return pagosRepositorio;
+                default:
+                    return pagosRepositorio;
+                    
+            }
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace ImixWebService.Models
     public partial class TransaccionesImix
     {
         public long idTblTransaccionesImix { get; set; }
+        public string internalCreditCode { get; set; }
         public string creditCode { get; set; }
         public string tipoIdSocio { get; set; }
         public string idDocumentoSocio { get; set; }
