@@ -1884,6 +1884,7 @@
           <ScalarProperty Name="idDocumentoSocio" ColumnName="idDocumentoSocio" />
           <ScalarProperty Name="tipoIdSocio" ColumnName="tipoIdSocio" />
           <ScalarProperty Name="creditCode" ColumnName="creditCode" />
+          <ScalarProperty Name="internalCreditCode" ColumnName="internalCreditCode" />
           <ScalarProperty Name="idTblTransaccionesImix" ColumnName="idTblTransaccionesImix" />
         </MappingFragment>
       </EntityTypeMapping>

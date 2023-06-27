@@ -4742,7 +4742,7 @@
     <Property Name="idTblPagosImix" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="idCreditoImix" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="idCreditoCooitza" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="montoPago" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="montoPago" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="fechaPago" Type="DateTime" Precision="3" />
     <Property Name="jsonRequestCliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="resultadoRequestCliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -4763,6 +4763,7 @@
       <PropertyRef Name="idTblTransaccionesImix" />
     </Key>
     <Property Name="idTblTransaccionesImix" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="internalCreditCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="creditCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="tipoIdSocio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="idDocumentoSocio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />

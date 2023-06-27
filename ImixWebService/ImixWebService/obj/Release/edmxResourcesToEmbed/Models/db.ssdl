@@ -1859,7 +1859,7 @@ advertencia 6002: La tabla o vista 'cooitzacoretest.dbo.Caja2022' no tiene defin
     <Property Name="idTblPagosImix" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idCreditoImix" Type="nvarchar(max)" />
     <Property Name="idCreditoCooitza" Type="nvarchar(max)" />
-    <Property Name="montoPago" Type="nvarchar(max)" />
+    <Property Name="montoPago" Type="decimal" Precision="18" Scale="2" />
     <Property Name="fechaPago" Type="datetime" />
     <Property Name="jsonRequestCliente" Type="nvarchar(max)" />
     <Property Name="resultadoRequestCliente" Type="nvarchar(max)" />
@@ -1878,6 +1878,7 @@ advertencia 6002: La tabla o vista 'cooitzacoretest.dbo.Caja2022' no tiene defin
       <PropertyRef Name="idTblTransaccionesImix" />
     </Key>
     <Property Name="idTblTransaccionesImix" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="internalCreditCode" Type="nvarchar(max)" />
     <Property Name="creditCode" Type="nvarchar(max)" />
     <Property Name="tipoIdSocio" Type="nvarchar(max)" />
     <Property Name="idDocumentoSocio" Type="nvarchar(max)" />
